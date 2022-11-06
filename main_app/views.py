@@ -4,11 +4,11 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 class Car:
-  def __init__(self, make, model, topspeed, discription):
+  def __init__(self, make, model, topspeed, description):
       self.make = make 
       self.model = model
       self.topspeed = topspeed
-      self.discription = discription
+      self.description = description
 
 
 cars = [
@@ -20,7 +20,7 @@ cars = [
 
 
 def home(request):
-  return HttpResponse('<h1>Hello ᓚᘏᗢ</h1>')
+  return render(request, 'home.html')
 
 def about(request):
   return render(request, 'about.html')

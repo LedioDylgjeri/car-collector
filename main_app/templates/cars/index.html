@@ -25,7 +25,7 @@
       <div class="card-content">
         <div class="card-img-container">
           <img 
-            src="" 
+            src="{% static 'images/Lamborghini-Veneno.svg' %}" 
             alt="A collectable car"
           >
         </div>
@@ -35,7 +35,7 @@
         {% else %}
           <p>A {{ car.make }} {{ car.model }} is not a collectable.</p>
         {% endif %}
-        <p><small>{{ car.description }}</small></p>
+        <p><small><i>{{ car.description }}</i></small></p>
       </div>
     </div>
   {% endfor %}
