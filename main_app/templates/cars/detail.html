@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link 
+  rel="stylesheet" 
+  type="text/css" 
+  href="{% static 'css/cars/car-detail.css' %}"
+/>
+{% endblock %}
+
+{% block content %}
+
+<section class="car-container">
+  <div class="car-img">
+    <img 
+      src="{% static 'images/Ferrari-F60-America.svg' %}" 
+      alt="A Ferrari"
+    >
+  </div>
+  <div class="car-details">
+    <h1>{{ car.make }} {{ car.model }}</h1>
+    {% if car.topspeed > 200 %}
+      <p>This model has a top speed of {{ car.topspeed }}mph and is a collectors dream car</p>
+    {% else %}
+      <p>A {{ car.make }} {{ car.model }} is not a collectable.</p>
+    {% endif %}
+    <p><small><i>{{ car.description }}</i></small></p>
+  </div>
+</section>
+
+{% endblock %}

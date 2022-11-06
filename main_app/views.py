@@ -1,24 +1,7 @@
 from django.shortcuts import render
+from .models import Car
 
 # Create your views here.
-from django.http import HttpResponse
-
-class Car:
-  def __init__(self, make, model, topspeed, description):
-      self.make = make 
-      self.model = model
-      self.topspeed = topspeed
-      self.description = description
-
-
-cars = [
-  Car('Zenovo', 'ST1',  223, 'There are only 15 of these cars.'),
-  Car('Ferrari', 'LaFerrari',  217, 'Only 499 cars made from 2013-2016.'),
-  Car('Bugatti', 'Veyron',  253, '$1.9 Million if you want one.'),
-  Car('Lamborghini', 'Veneno',  221, 'Fastest Lamborghini.')
-]
-
-
 def home(request):
   return render(request, 'home.html')
 
@@ -26,4 +9,9 @@ def about(request):
   return render(request, 'about.html')
 
 def cars_index(request):
+  cars = Car.objects.all()
   return render(request, 'cars/index.html', { 'cars': cars })
+
+def cars_detail(request, car_id):
+  car = Car.objects.get(id=car_id)
+  return render(request, 'cars/detail.html', { 'car': car })
