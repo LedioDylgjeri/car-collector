@@ -8,8 +8,12 @@
 {% block content %}
 
 <div class="page-header">
-  <h1>Add a car</h1>
-  <img src="{% static 'images/Ferrari-F60-America.svg' %}" alt="A sport car"/>
+  {% if car %}
+    <h1>Edit {{ car.name }}</h1>
+  {% else %}
+    <h1>Add a Car</h1>
+  {% endif %}
+  <img src="{% static 'images/addcar.png' %}" alt="A sport car"/>
 </div>
 <form action="" method="post" class="form-container">
   {% csrf_token %}

@@ -14,7 +14,7 @@
 <section class="car-container">
   <div class="car-img">
     <img 
-      src="{% static 'images/WMotors-Lykan-Hypersport.svg' %}" 
+      src="{% static 'images/cardetail.png' %}" 
       alt="A Ferrari"
     >
   </div>
@@ -26,6 +26,10 @@
       <p>A {{ car.make }} {{ car.model }} is not a collectable.</p>
     {% endif %}
     <p><small><i>{{ car.description }}</i></small></p>
+    <div class="car-actions">
+      <a href="{% url 'cars_update' car.id %}" class="btn warn">Edit</a>
+      <a href="{% url 'cars_delete' car.id %}" class="btn danger">Delete</a>
+    </div>
   </div>
 </section>
 
