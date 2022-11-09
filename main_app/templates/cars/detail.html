@@ -7,11 +7,21 @@
   type="text/css" 
   href="{% static 'css/cars/car-detail.css' %}"
 />
+<script defer src="{% static 'js/car-detail.js' %}"></script>
 {% endblock %}
 
 {% block content %}
 
 <section class="car-container">
+<link 
+  href="https://cdn.jsdelivr.net/npm/mc-datepicker/dist/mc-calendar.min.css" 
+  rel="stylesheet" 
+/>
+<link rel="stylesheet" href="{% static 'css/mcdp.css' %}">
+<script 
+  src="https://cdn.jsdelivr.net/npm/mc-datepicker/dist/mc-calendar.min.js"
+>
+</script>
   <div class="car-img">
     <img 
       src="{% static 'images/cardetail.png' %}" 
@@ -32,5 +42,40 @@
     </div>
   </div>
 </section>
+<div class="feedings-toy-container">
+  <section class="feedings">
+    <div class="subsection-title">
+      <h2>Maintenace</h2>
+      <img 
+        src="{% static 'images/maintenance.png' %}" 
+        alt="car being washed"
+      />
+    </div>
+    <h3>Add Maintenace</h3>
+    <form
+      action="{% url 'add_maintenance' car.id %}" 
+      method="post" 
+      class="subsection-content"
+    >
+      {% csrf_token %}
+      {{ maintenance_form.as_p }}
+      <button type="submit" class="btn submit">Add</button>
+    </form>
+    <h3>Past Maintenace</h3>
+    <table>
+      <thead>
+        <tr><th>Date</th><th>Service</th></tr>
+      </thead>
+      <tbody>
+        {% for maintenance in car.maintenance_set.all %}
+          <tr>
+            <td>{{maintenance.date}}</td>
+            <td>{{maintenance.get_service_display}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+</div>
 
 {% endblock %}

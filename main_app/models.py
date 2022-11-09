@@ -20,7 +20,7 @@ class Car(models.Model):
     return reverse('cars_detail', kwargs={'car_id': self.id})
 
 class Maintenance(models.Model):
-  date = models.DateField()
+  date = models.DateField('Service Date')
   service = models.CharField(
     max_length=1,
     choices=SERVICES,  
@@ -31,3 +31,6 @@ class Maintenance(models.Model):
 
   def __str__(self):
     return f"{self.get_service_display()} on {self.date}"
+
+  class Meta:
+    ordering = ['-date']
