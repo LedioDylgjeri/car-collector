@@ -8,10 +8,10 @@
   margin: 0 250px;
 }
 
-/* .usr-img {
+.usr-img {
   width: 100%;
   border-radius: var(--card-border-radius);
-} */
+}
 
 .car-details {
   width: 100%;
@@ -19,6 +19,10 @@
 
 .car-actions {
   margin-top: 20px;
+}
+
+.feedings {
+  background-color: white;
 }
 
 .feedings-toy-container {

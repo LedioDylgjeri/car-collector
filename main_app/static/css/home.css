@@ -25,6 +25,15 @@ main>section {
 
 .car-container {
   width: 80%;
+  text-align: center;
+  color: aquamarine;
+}
+
+img {
+  border: 2px solid rgb(24, 5, 232);
+  border-radius: 10px;
+  width: 300px;
+  box-shadow: 5px 5px 5px aquamarine;
 }
 
 .login {

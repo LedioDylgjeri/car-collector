@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from datetime import date
 
 SERVICES = (
   ('W', 'Car Wash'),
@@ -19,6 +20,9 @@ class Car(models.Model):
   def get_absolute_url(self):
     return reverse('cars_detail', kwargs={'car_id': self.id})
 
+  def serviced_today(self):
+    return self.maintenance_set.filter(date=date.today()).count() >= len(SERVICES)
+
 class Maintenance(models.Model):
   date = models.DateField('Service Date')
   service = models.CharField(
@@ -34,3 +38,13 @@ class Maintenance(models.Model):
 
   class Meta:
     ordering = ['-date']
+
+class Body(models.Model):
+  type = models.CharField(max_length=50)
+  color = models.CharField(max_length=20)
+
+  def __str__(self):
+    return self.make
+
+  def get_absolute_url(self):
+    return reverse('bodies_detail', kwargs={'pk': self.id})
