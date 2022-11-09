@@ -8,11 +8,22 @@ SERVICES = (
   ('T', 'Tire Change')
 )
 
+class Body(models.Model):
+  type = models.CharField(max_length=50)
+  color = models.CharField(max_length=20)
+
+  def __str__(self):
+    return self.type
+
+  def get_absolute_url(self):
+    return reverse('bodies_detail', kwargs={'pk': self.id})
+
 class Car(models.Model):
   make = models.CharField(max_length=100)
   model = models.CharField(max_length=100)
   topspeed = models.IntegerField()
   description = models.TextField(max_length=200)
+  body = models.ManyToManyField(Body)
 
   def __str__(self):
     return self.make
@@ -39,12 +50,3 @@ class Maintenance(models.Model):
   class Meta:
     ordering = ['-date']
 
-class Body(models.Model):
-  type = models.CharField(max_length=50)
-  color = models.CharField(max_length=20)
-
-  def __str__(self):
-    return self.make
-
-  def get_absolute_url(self):
-    return reverse('bodies_detail', kwargs={'pk': self.id})

@@ -13,4 +13,6 @@ urlpatterns = [
   path('bodies/create/', views.BodyCreate.as_view(), name='bodies_create'),
   path('bodies/<int:pk>/', views.BodyDetail.as_view(), name='bodies_detail'),
   path('bodies/', views.BodyList.as_view(), name='bodies_index'),
+  path('bodies/<int:pk>/update/', views.BodyUpdate.as_view(), name='bodies_update'),
+  path('bodies/<int:pk>/delete/', views.BodyDelete.as_view(), name='bodies_delete'),
 ]

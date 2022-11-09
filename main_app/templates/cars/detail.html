@@ -87,6 +87,32 @@
       </div>
     {% endif %}
   </section>
+  <section class="toys">
+    <div class="subsection-title">
+      <h2>Body Style 🚙 🏎 🚘</h2>
+    </div>
+    <h3>{{ car.make }} {{ car.model }}'s body style</h3>
+    <div class="subsection-content">
+      {% if car.body.count %}
+        {% for body in car.body.all %}
+          <div class="toy-container">
+            <div 
+              class="color-block"
+              style="background-color: {{ body.color }}"
+            ></div>
+            <a href="{% url 'bodies_detail' body.id %}">
+              <p>A {{ body.type }} {{ body.color }}</p>
+            </a>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p class="no-toys">{{car.make}} doesn't have a dody style 😞</p>
+      {% endif %}
+    </div>
+    <h3>Available Styles</h3>
+    <div class="subsection-content">
+    </div>
+  </section>
 </div>
 
 {% endblock %}

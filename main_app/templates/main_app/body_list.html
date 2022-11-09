@@ -5,7 +5,7 @@
 <link 
   rel="stylesheet"
   type="text/css"
-  href="{% static 'css/cars/body-index.css' %}"
+  href="{% static 'css/body/body-index.css' %}"
 />
 {% endblock %}
 
@@ -20,13 +20,13 @@
 </section>
 
 <section class="card-container">
-  {% for body in bodies_list %}
+  {% for body in body_list %}
   <div class="card" style="border-color: {{ body.color }}">
     <div class="card-bg" style="background-color: {{ body.color }}"></div>
     <a href="{% url 'bodies_detail' body.id %}">
       <div class="card-content">
-        <h2>{{ body.style }}</h2>
-        <p>I like this body style in {{ body.color }}</p>
+        <h2>{{ body.type }}</h2>
+        <p>This model comes in {{ body.color }}</p>
       </div>
     </a>
   </div>

@@ -24,11 +24,11 @@ def cars_detail(request, car_id):
 
 class CarCreate(CreateView):
   model = Car
-  fields = '__all__'  
+  fields = ['make', 'model', 'topspeed', 'description']  
 
 class CarUpdate(UpdateView):
   model = Car
-  fields = ['make', 'model', 'topspeed', 'description']
+  fields = ['model', 'topspeed', 'description']
 
 class CarDelete(DeleteView):
   model = Car
@@ -48,6 +48,16 @@ class BodyCreate(CreateView):
 
 class BodyList(ListView):
   model = Body
+  fields = ['type', 'color']
 
 class BodyDetail(DetailView):
   model = Body
+  success_url = '/bodies/'
+
+class BodyUpdate(UpdateView):
+  model = Body
+  fields = ['type', 'color']
+
+class BodyDelete(DeleteView):
+  model = Body
+  success_url = '/bodies/'
