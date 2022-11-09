@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
+from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Car
+from .models import Car, Body
 from .forms import MaintenanceForm
 
 # Create your views here.
@@ -40,3 +41,13 @@ def add_maintenance(request, car_id):
     new_maintenance.car_id = car_id
     new_maintenance.save()
   return redirect('cars_detail', car_id=car_id)
+
+class BodyCreate(CreateView):
+  model = Body
+  fields = '__all__'
+
+class BodyList(ListView):
+  model = Body
+
+class BodyDetail(DetailView):
+  model = Body

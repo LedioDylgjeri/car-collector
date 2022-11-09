@@ -11,4 +11,6 @@ urlpatterns = [
   path('cars/<int:pk>/delete/', views.CarDelete.as_view(), name='cars_delete'),
   path('cats/<int:car_id>/add_maintenance/', views.add_maintenance, name='add_maintenance'),
   path('bodies/create/', views.BodyCreate.as_view(), name='bodies_create'),
+  path('bodies/<int:pk>/', views.BodyDetail.as_view(), name='bodies_detail'),
+  path('bodies/', views.BodyList.as_view(), name='bodies_index'),
 ]
