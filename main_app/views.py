@@ -4,6 +4,8 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Car, Body
 from .forms import MaintenanceForm
 
@@ -13,10 +15,12 @@ def home(request):
 def about(request):
   return render(request, 'about.html')
 
+@login_required
 def cars_index(request):
-  cars = Car.objects.all()
+  cars = Car.objects.filter(user=request.user)
   return render(request, 'cars/index.html', { 'cars': cars })
 
+@login_required
 def cars_detail(request, car_id):
   car = Car.objects.get(id=car_id)
   bodies_car_doesnt_have = Body.objects.exclude(
@@ -26,7 +30,7 @@ def cars_detail(request, car_id):
     'car': car, 'maintenance_form': maintenance_form, 'bodies': bodies_car_doesnt_have
   })
 
-class CarCreate(CreateView):
+class CarCreate(LoginRequiredMixin, CreateView):
   model = Car
   fields = ['make', 'model', 'topspeed', 'description']
 
@@ -34,14 +38,15 @@ class CarCreate(CreateView):
     form.instance.user = self.request.user  
     return super().form_valid(form)
 
-class CarUpdate(UpdateView):
+class CarUpdate(LoginRequiredMixin, UpdateView):
   model = Car
   fields = ['model', 'topspeed', 'description']
 
-class CarDelete(DeleteView):
+class CarDelete(LoginRequiredMixin, DeleteView):
   model = Car
   success_url = '/cars/'
 
+@login_required
 def add_maintenance(request, car_id):
   form = MaintenanceForm(request.POST)
   if form.is_valid():
@@ -50,26 +55,27 @@ def add_maintenance(request, car_id):
     new_maintenance.save()
   return redirect('cars_detail', car_id=car_id)
 
-class BodyCreate(CreateView):
+class BodyCreate(LoginRequiredMixin, CreateView):
   model = Body
   fields = '__all__'
 
-class BodyList(ListView):
+class BodyList(LoginRequiredMixin, ListView):
   model = Body
   fields = ['type', 'color']
 
-class BodyDetail(DetailView):
+class BodyDetail(LoginRequiredMixin, DetailView):
   model = Body
   success_url = '/bodies/'
 
-class BodyUpdate(UpdateView):
+class BodyUpdate(LoginRequiredMixin, UpdateView):
   model = Body
   fields = ['type', 'color']
 
-class BodyDelete(DeleteView):
+class BodyDelete(LoginRequiredMixin, DeleteView):
   model = Body
   success_url = '/bodies/'
 
+@login_required
 def assoc_body(request, car_id, body_id):
   Car.objects.get(id=car_id).body.add(body_id)
   return redirect('cars_detail', car_id=car_id)
