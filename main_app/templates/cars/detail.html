@@ -111,6 +111,27 @@
     </div>
     <h3>Available Styles</h3>
     <div class="subsection-content">
+      {% if bodies.count %}
+        {% for body in bodies.all %}
+          <div class="toy-container">
+            <div 
+              class="color-block"
+              style="background-color: {{ body.color }}"
+            ></div>
+            <a href="{% url 'bodies_detail' body.id %}">
+              <p>{{ body.type }} {{ body.color }}</p>
+            </a>
+            <form action="{% url 'assoc_body' car.id body.id %}" method="POST">
+              {% csrf_token %}
+              <button type="submit" class="btn submit">Add Body</button>
+            </form>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p class="all-toys">
+          {{car.make}} {{car.model}} has been given a body style
+        </p>
+      {% endif %}
     </div>
   </section>
 </div>

@@ -3,8 +3,8 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Car, Body
 from .forms import MaintenanceForm
+from django.contrib.auth.views import LoginView
 
-# Create your views here.
 def home(request):
   return render(request, 'home.html')
 
@@ -17,9 +17,11 @@ def cars_index(request):
 
 def cars_detail(request, car_id):
   car = Car.objects.get(id=car_id)
+  bodies_car_doesnt_have = Body.objects.exclude(
+      id__in=car.body.all().values_list('id'))
   maintenance_form = MaintenanceForm()
   return render(request, 'cars/detail.html', { 
-    'car': car, 'maintenance_form': maintenance_form 
+    'car': car, 'maintenance_form': maintenance_form, 'bodies': bodies_car_doesnt_have
   })
 
 class CarCreate(CreateView):
@@ -61,3 +63,10 @@ class BodyUpdate(UpdateView):
 class BodyDelete(DeleteView):
   model = Body
   success_url = '/bodies/'
+
+def assoc_body(request, car_id, body_id):
+  Car.objects.get(id=car_id).body.add(body_id)
+  return redirect('cars_detail', car_id=car_id)
+
+class Home(LoginView):
+  template_name = 'home.html'

@@ -24,20 +24,22 @@ main>section {
 }
 
 .car-container {
+  display: block;
   width: 80%;
   text-align: center;
   color: aquamarine;
 }
 
 img {
-  border: 2px solid rgb(24, 5, 232);
+  display: block;
+  border: 2px solid rgba(26, 149, 198, 0.765);
   border-radius: 10px;
   width: 300px;
   box-shadow: 5px 5px 5px aquamarine;
 }
 
 .login {
-  display: flex;
+  display: block;
   flex-direction: column;
   justify-content: center;
   align-items: center;
