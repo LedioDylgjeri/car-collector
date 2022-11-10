@@ -9,6 +9,7 @@
   width: 275px;
   margin: 10px;
   border: var(--borders);
+  border-radius: 10px;
   background: white;
   box-shadow: var(--card-box-shadow);
 }
@@ -23,6 +24,10 @@
   border-radius: var(--card-border-radius);
 }
 
+img {
+  margin-left: 35px;
+}
+
 .card>a {
   text-decoration: none;
   color: var(--text-color);
@@ -31,6 +36,7 @@
 .card h2 {
   margin: 10px 0;
   font-size: var(--font-xl);
+  text-align: center;
 }
 
 .card p {

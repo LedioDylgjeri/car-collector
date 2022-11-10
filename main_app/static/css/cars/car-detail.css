@@ -4,8 +4,8 @@
   text-align: center;
 }
 
-.car-img {
-  margin: 0 250px;
+.car-img > img{
+  border-radius: 10px;
 }
 
 .usr-img {
@@ -15,6 +15,7 @@
 
 .car-details {
   width: 100%;
+  color: rgba(7, 34, 130, 0.82);
 }
 
 .car-actions {
@@ -195,15 +196,10 @@
 @media only screen and (min-width: 768px) {
   .car-container {
     padding: 35px 30px;
-    flex-direction: row;
-    align-items: center;
-    justify-content: start;
   }
   
   .car-img {
-    width: 25%;
-    max-width: 250px;
-    margin-right: 25px;
+    margin: 0 auto;
   }
 
   .feedings-toy-container {

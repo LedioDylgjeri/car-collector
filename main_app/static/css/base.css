@@ -29,10 +29,10 @@ body {
     'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
     'Helvetica Neue', sans-serif;
   min-height: 100vh;
-  background-image: linear-gradient(to top, #30cfd0 0%, #5005ab 100%);
+  background-image: linear-gradient(to top, #30d0d047 0%, #5005abb7 100%);
   --nav-bg: rgba(104, 197, 248, .7);
-  --nav-bg-ff: rgba(104, 197, 248, .9);
-  --borders: rgb(36, 116, 248) solid 2px;
+  --nav-bg-ff: rgba(104, 198, 248, 0.768);
+  --borders: rgba(36, 117, 248, 0.752) solid 2px;
   --text-color: rgb(17, 20, 17);
   --link-hover-color: rgb(16, 56, 158);
   --button-bg: rgb(245, 245, 245);
@@ -53,7 +53,6 @@ body {
 header {
   width: 100%;
   background: var(--nav-bg-ff);
-  /* rgba(104, 197, 248, .9) */
   border-bottom: var(--borders);
 }
 
@@ -78,7 +77,7 @@ h2 {
 
 nav a {
   text-decoration: none;
-  color: var(--text-color);
+  color: rgba(8, 40, 203, 0.733);
   font-weight: 600;
   font-size: 16px;
 }
@@ -104,15 +103,23 @@ nav li {
   max-width: 500px;
 }
 
-.header-logo-container > a {
-  border: 2px solid red;
+.header-logo-container > a > img{
+  height: 25px;
+  border-radius: 50%;
+}
+
+.carlist-div {
+  margin-top: 25px;
+}
+
+.carlist-div > img {
+  border-radius: 5px;
 }
 
 .page-header {
-  display: flex;
-  align-items: center;
   margin: 20px;
-
+  text-align: center;
+  color: rgba(6, 25, 120, 0.535);
 }
 
 .btn {

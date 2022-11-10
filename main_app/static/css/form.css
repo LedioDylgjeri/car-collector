@@ -4,6 +4,15 @@
   width: 100%;
 }
 
+h1 {
+  text-align: center;
+}
+
+img {
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
 table {
   padding: 0 40px;
   width: 100%;
