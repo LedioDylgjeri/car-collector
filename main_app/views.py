@@ -1,9 +1,11 @@
 from django.shortcuts import render,redirect
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.views import LoginView
 from .models import Car, Body
 from .forms import MaintenanceForm
-from django.contrib.auth.views import LoginView
 
 def home(request):
   return render(request, 'home.html')
@@ -26,7 +28,11 @@ def cars_detail(request, car_id):
 
 class CarCreate(CreateView):
   model = Car
-  fields = ['make', 'model', 'topspeed', 'description']  
+  fields = ['make', 'model', 'topspeed', 'description']
+
+  def form_valid(self, form):
+    form.instance.user = self.request.user  
+    return super().form_valid(form)
 
 class CarUpdate(UpdateView):
   model = Car
@@ -70,3 +76,17 @@ def assoc_body(request, car_id, body_id):
 
 class Home(LoginView):
   template_name = 'home.html'
+
+def signup(request):
+  error_message = ''
+  if request.method == 'POST':
+    form = UserCreationForm(request.POST)
+    if form.is_valid():
+      user = form.save()
+      login(request, user)
+      return redirect('cats_index')
+    else:
+      error_message = 'Invalid sign up - try again'
+  form = UserCreationForm()
+  context = {'form': form, 'error_message': error_message}
+  return render(request, 'signup.html', context)

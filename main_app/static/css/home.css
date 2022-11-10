@@ -1,18 +1,11 @@
 main {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
   height: 100%;
+  margin-top: 50px;
 }
 
 main>section {
   width: 100%;
   padding: 10px 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
 }
 
 .header-logo-container {
@@ -20,13 +13,14 @@ main>section {
 }
 
 .logo-container {
-  max-width: 375px;
+  max-width: 100px;
+  margin: 0 auto;
 }
 
 .car-container {
   display: block;
+  margin: 0 auto;
   width: 80%;
-  text-align: center;
   color: aquamarine;
 }
 
@@ -35,20 +29,23 @@ img {
   border: 2px solid rgba(26, 149, 198, 0.765);
   border-radius: 10px;
   width: 300px;
-  box-shadow: 5px 5px 5px aquamarine;
+  box-shadow: 5px 5px 5px rgba(127, 255, 212, 0.698);
+}
+
+.login-section {
+  margin: 0 auto;
 }
 
 .login {
   display: block;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  background-color: rgba(133, 98, 237, 0.526);
   width: 80%;
 }
 
 .login h1 {
   font-size: clamp(3.2rem, 3vw, 4.8rem);
   margin: 10px 0;
+  text-align: center;
 }
 
 .login>p {
@@ -84,10 +81,11 @@ img {
   }
 
   .login {
-    border: var(--borders);
+    display: block;
+    border: 2px solid rgb(26, 149, 198, 0.765);
     padding: 20px;
     border-radius: var(--card-border-radius);
-    box-shadow: var(--card-box-shadow);
+    box-shadow: 5px 5px 5px rgba(127, 255, 212, 0.698);
     width: 100%;
   }
 
